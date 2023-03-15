@@ -1,0 +1,16 @@
+apiVersion: infra.k8smgmt.io/v3
+kind: Addon
+metadata:
+  name: pure-yaml-configmap
+  project: ml-test-project
+spec:
+  namespace: default
+  version: "1"
+  artifact:
+    artifact:
+      paths:
+      - name: /addons/pure-yaml-configmap/manifests/configmap.yaml
+      repository: martin-blueprint-workflows
+      revision: main
+    type: Yaml
+  sharing: {}

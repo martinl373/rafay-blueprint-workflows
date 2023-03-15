@@ -1,0 +1,16 @@
+apiVersion: infra.k8smgmt.io/v3
+kind: Blueprint
+metadata:
+  name: pure-yaml-addons
+  project: ml-test-project
+spec:
+  type: custom
+  version: 1
+  base:
+    name: minimal
+    version: 1.23.0
+  defaultAddons:
+    {}
+  customAddons:
+  - name: pure-yaml-configmap
+    version: 1
