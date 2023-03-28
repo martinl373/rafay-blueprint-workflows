@@ -38,7 +38,8 @@ function log() {
 
 	local line
 	while IFS= read -r line; do
-		printf "${log_line_format}" "$(date +${log_time_format})" "${line}"
+		# printf "${log_line_format}" "$(date +${log_time_format})" "${line}"
+        printf "%s\n" "${line}"
 	done
 }
 
@@ -167,19 +168,19 @@ fi
 
 ## Update addon parameters if overrides are specified
 log "Updating spec fields from input ..."
-if [[ ! -z "${addon_name:-}" ]]; then
+if [[ ! -z "${addon_name}" ]]; then
     log_indent '.metadata.name = "'${addon_name}'"'
     yq -i '.metadata.name = "'${addon_name}'"' "${addon_spec_file}"
 fi
-[[ ! -z "${addon_project:-}" ]]; then
+if [[ ! -z "${addon_project}" ]]; then
     log_indent '.metadata.project = "'${addon_project}'"'
     yq -i '.metadata.project = "'${addon_project}'"' "${addon_spec_file}"
 fi
-[[ ! -z "${addon_namespace:-}" ]]; then
+if [[ ! -z "${addon_namespace}" ]]; then
     log_indent '.spec.namespace = "'${addon_namespace}'"'
     yq -i '.spec.namespace = "'${addon_namespace}'"' "${addon_spec_file}"
 fi
-[[ ! -z "${addon_version:-}" ]]; then
+if [[ ! -z "${addon_version}" ]]; then
     log_indent '.spec.version = "'${addon_version}'"'
     yq -i '.spec.version = "'${addon_version}'"' "${addon_spec_file}"
 fi
