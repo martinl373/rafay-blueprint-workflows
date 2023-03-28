@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test-configmap02
+data:
+  test-data: |
+    ChartVersion: "v1 of test configmap2, from helm-chart-with-spec"

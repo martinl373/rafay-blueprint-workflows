@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test-configmap01
+data:
+  test-data: |
+    TestData: "v1 of test configmap, from pure-yaml-autogen"

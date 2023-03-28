@@ -1,0 +1,13 @@
+apiVersion: infra.k8smgmt.io/v3
+kind: Addon
+metadata:
+  name: pure-yaml-with-spec
+  project: ml-test-project
+spec:
+  namespace: addon-space
+  artifact:
+    artifact:
+      paths:
+        - name: file://manifests/
+    type: Yaml
+

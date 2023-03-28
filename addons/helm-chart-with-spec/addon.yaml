@@ -1,0 +1,13 @@
+apiVersion: infra.k8smgmt.io/v3
+kind: Addon
+metadata:
+  name: helm-chart-with-spec
+  project: ml-test-project
+spec:
+  namespace: addon-space
+  artifact:
+    artifact:
+      chartPath:
+        name: file://./
+    type: Helm
+  version: 1.0.0

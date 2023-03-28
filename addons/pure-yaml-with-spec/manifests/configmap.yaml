@@ -4,4 +4,4 @@ metadata:
   name: test-configmap
 data:
   test-data: |
-    TestData: "v0 of test configmap"
+    TestData: "v4 of test configmap"
