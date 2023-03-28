@@ -8,9 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     name: Running the Rafay Deploy
     steps:
-      - name: Rafay Deploy step
-        id: rafay-deploy
-        uses: ./github/actions/rafay-deploy
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Deploy Rafay Addon
+        uses: ./.github/actions/rafay-deploy
         with:
           name: "helm-chart-autogen-gh"
           project: "ml-test-project"
