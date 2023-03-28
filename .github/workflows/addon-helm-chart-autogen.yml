@@ -18,5 +18,5 @@ jobs:
           project: "ml-test-project"
           namespace: "ghspace"
           version: ${{ github.run_number }}
-          artifact-path: ${{ github.workspace }}/addons/helm-chart-autogen
+          artifact-path: addons/helm-chart-autogen
           rafay-api-key: ${{ secrets.RAFAY_API_KEY }}
