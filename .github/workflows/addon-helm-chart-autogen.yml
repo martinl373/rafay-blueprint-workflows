@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: Rafay Deploy step
         id: rafay-deploy
-        uses: actions/rafay-deploy@v1
+        uses: ./github/actions/rafay-deploy
         with:
           artifact-path: '/git/something/this/'
           spec-file: 'hello/my/dear'
