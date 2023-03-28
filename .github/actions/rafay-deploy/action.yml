@@ -1,0 +1,19 @@
+name: 'Rafay Deploy'
+description: 'Action to deploy rafay addons'
+inputs:
+  artifact-path:
+    description: 'The path to the artifact'
+    required: true
+    default: '/'
+  spec-file:
+    description: 'The path to the spec file'
+    required: true
+    default: '/'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.who-to-greet }}
+  env:
+    ARTIFACT_PATH: ${{ inputs.artifact-path }}
+    SPEC_FILE: ${{ inputs.spec-file }}
