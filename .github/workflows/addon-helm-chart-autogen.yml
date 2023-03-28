@@ -1,0 +1,14 @@
+on:
+  workflow_dispatch:
+  
+jobs:
+  rafay-deploy:
+    runs-on: ubuntu-latest
+    name: Running the Rafay Deploy
+    steps:
+      - name: Rafay Deploy step
+        id: rafay-deploy
+        uses: actions/rafay-deploy@v1
+        with:
+          artifact-path: '/git/something/this/'
+          spec-file: 'hello/my/dear'
