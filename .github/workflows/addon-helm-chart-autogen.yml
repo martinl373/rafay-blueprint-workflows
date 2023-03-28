@@ -1,3 +1,5 @@
+name: "Addon: Helm Chart Autogen"
+
 on:
   workflow_dispatch:
   
@@ -10,5 +12,9 @@ jobs:
         id: rafay-deploy
         uses: ./github/actions/rafay-deploy
         with:
-          artifact-path: '/git/something/this/'
-          spec-file: 'hello/my/dear'
+          name: "helm-chart-autogen-gh"
+          project: "ml-test-project"
+          namespace: "ghspace"
+          version: ${{ github.run_number }}
+          artifact-path: ${{ github.workspace }}/addons/helm-chart-autogen
+          rafay-api-key: ${{ secrets.RAFAY_API_KEY }}
