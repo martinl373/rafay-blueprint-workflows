@@ -62,7 +62,6 @@ rafay_rest_endpoint="${RAFAY_REST_ENDPOINT:-console.rafay.dev}"
 rafay_ops_endpoint="${RAFAY_OPS_ENDPOINT:-console.rafay.dev}"
 rafay_rctl_project="${PROJECT:-}"
 rafay_api_key="${RAFAY_API_KEY:-}"
-rafay_api_secret="${RAFAY_API_SECRET:-}"
 
 ## Check required input variables
 if [[ -z "${addon_artifact_path}" && -z "${addon_spec_file}" ]]; then
@@ -189,19 +188,22 @@ if [[ ! -z "${addon_version}" ]]; then
     yq -i '.spec.version = "'${addon_version}'"' "${addon_spec_file}"
 fi
 
-## If the rctl project is not set try to fetch it from the
-## addon spec. (This is not actually used for anything except
-## to silence a silly error message)
+## If the rctl project is not set try to fetch it from the addon spec.
+##  NOTE: This is not actually used except to silence a silly error message.
 if [[ -z "${rafay_rctl_project}" ]]; then
     rafay_rctl_project=$(yq '.metadata.project // ""' "${addon_spec_file}")
 fi
 
 ## Run rctl to make the deploy API call
+##  NOTE: The KEY and SECRET vars are set to the same thing
+##  on purpose. SECRET is not actually used by the client
+##  but it will complain if it is missing. The KEY is the
+##  actual secret. ( ¯\_(ツ)_/¯ )
 log "Deploying addon ..."
 RCTL_REST_ENDPOINT="${rafay_rest_endpoint}" \
 RCTL_OPS_ENDPOINT="${rafay_ops_endpoint}" \
 RCTL_API_KEY="${rafay_api_key}" \
-RCTL_API_SECRET="${rafay_api_secret}" \
+RCTL_API_SECRET="${rafay_api_key}" \
 RCTL_PROJECT="${rafay_rctl_project}" \
 rctl create addon version --v3 -f "${addon_spec_file}" | log_indent
 log "all done."
