@@ -193,7 +193,7 @@ fi
 ## addon spec. (This is not actually used for anything except
 ## to silence a silly error message)
 if [[ -z "${rafay_rctl_project}" ]]; then
-    rafay_rctl_project=$(yq '.metadata.project // ""')
+    rafay_rctl_project=$(yq '.metadata.project // ""' "${addon_spec_file}")
 if
 
 ## Run rctl to make the deploy API call
